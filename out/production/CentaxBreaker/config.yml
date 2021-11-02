@@ -1,0 +1,17 @@
+# Use: ID:DURABILITY:TIME:TRUE|FALSE
+# ID means the block id
+# DURABILITY means the durability of block
+# TIME means how long it will take to regenerate durability (In minutes)
+# TRUE|FALSE means if durability will start in 1 when place, and regen across the time
+blocks:
+  - "7:10:1:true"
+  - "1:5:5:true"
+
+# Use: ENTITY:DAMAGE
+# ENTITY means the entity name. (Can be found here: https://helpch.at/docs/1.8.3/index.html?org/bukkit/entity/EntityType.html)
+# DAMAGE means the damage this entity will do to block
+entities:
+  - "primed_tnt:1"
+
+messages:
+  check-durability: "&eDurabilidade: &f{current}/{max}"

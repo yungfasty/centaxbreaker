@@ -1,0 +1,3 @@
+name: CentaxBreaker
+version: 1.0
+main: com.github.akafasty.breaker.main.BreakerPlugin
