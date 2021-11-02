@@ -23,42 +23,20 @@ public class BreakerPlugin extends JavaPlugin {
     @SneakyThrows
     public void onEnable() {
 
-        String ip = new BufferedReader(new InputStreamReader((new URL("http://checkip.amazonaws.com")).openStream())).readLine();
+        instance = this;
 
-        BufferedReader ss = new BufferedReader(new InputStreamReader((new URL("http://minhapika12.000webhostapp.com/breaker.html")).openStream()));
+        saveDefaultConfig();
 
-        ss.lines().forEach(line -> {
+        configurationManager = new ConfigurationManager();
 
+        configurationManager.loadAll();
 
-            if (line.equals(String.format("%s:%s", ip, Bukkit.getPort()))) {
+        breakerManager = new BreakerManager();
 
-                Bukkit.getConsoleSender().sendMessage("§a[CentaxBreaker] Autenticado com sucesso.");
+        Bukkit.getPluginManager().registerEvents(new BlockPlaceListener(), this);
+        Bukkit.getPluginManager().registerEvents(new EntityExplodeListener(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerInteractListener(), this);
 
-                saveDefaultConfig();
-
-                instance = this;
-
-                configurationManager = new ConfigurationManager();
-
-                configurationManager.loadAll();
-
-                breakerManager = new BreakerManager();
-
-                Bukkit.getPluginManager().registerEvents(new BlockPlaceListener(), this);
-                Bukkit.getPluginManager().registerEvents(new EntityExplodeListener(), this);
-                Bukkit.getPluginManager().registerEvents(new PlayerInteractListener(), this);
-
-
-            } else {
-
-                Bukkit.getConsoleSender().sendMessage("§c[CentaxBreaker] Falha ao autenticar-se.");
-
-                Bukkit.getPluginManager().disablePlugin(this);
-
-            }
-
-
-        });
 
     }
 
